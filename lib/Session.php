@@ -210,5 +210,20 @@ class Session implements ArrayAccess
     {
         $this->unset($offset);
     }
+
+    /**
+     * Gets a session key and then removes it
+     * 
+     * @access  public
+     * @param   string  $key
+     * @param   mixed   $default
+     * @return  mixed
+     */
+    public function flash($key, $default = null)
+    {
+        $value = $this->get($key, $default);
+        $this->unset($key);
+        return $value;
+    }
 }
 
